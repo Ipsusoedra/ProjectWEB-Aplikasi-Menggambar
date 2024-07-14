@@ -1,0 +1,109 @@
+body {
+  /* Gaya untuk tubuh halaman */
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background-color: #ffefd5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  /* Gaya untuk judul utama */
+  color: #ff4500;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+p {
+  /* Gaya untuk paragraf */
+  color: #ff4500;
+  font-size: 1.2em;
+}
+
+.card {
+  /* Gaya untuk kotak kartu */
+  background-color: #fff8dc;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn {
+  /* Gaya untuk tombol */
+  font-size: 1.2em;
+  border-radius: 15px;
+}
+
+#submitPembayaran {
+  /* Gaya khusus untuk tombol pembayaran */
+  background-color: #32cd32;
+  border-color: #32cd32;
+}
+
+#lanjutkanGambar {
+  /* Gaya khusus untuk tombol lanjutkan gambar */
+  background-color: #ff4500;
+  border-color: #ff4500;
+}
+
+#warna {
+  /* Gaya untuk input warna */
+  width: 100%;
+  height: 50px;
+}
+
+#kuas {
+  /* Gaya untuk input ukuran kuas */
+  width: 100%;
+}
+
+#pilihanGambar,
+#warna,
+#kuas {
+  /* Gaya umum untuk elemen pilihan */
+  font-size: 1.2em;
+}
+
+#alasGambar {
+  /* Gaya untuk canvas gambar */
+  border: 3px solid #ffa07a;
+  background-color: #fff;
+  display: block;
+  margin: 0 auto;
+}
+
+.kontrol-musik {
+  position: fixed;
+  top: 50%;
+  right: -30%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.kontrol-musik button {
+  margin-bottom: 5px;
+}
+@media (max-width: 768px) {
+  /* Gaya untuk layar berukuran kecil (ponsel) */
+  h1 {
+    font-size: 2em;
+  }
+
+  .btn {
+    font-size: 1em;
+  }
+
+  #warna {
+    height: 40px;
+  }
+
+  #alasGambar {
+    width: 100%;
+    height: auto;
+  }
+  .kontrol-musik {
+    display: none; /* Sembunyikan kontrol musik di layar kecil */
+  }
+}

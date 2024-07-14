@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <!-- Pengaturan dasar dokumen HTML -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mewarnai</title>
+    <!-- Penggunaan Bootstrap untuk tata letak dan gaya -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- Animasi menggunakan AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <!-- Gaya kustom -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Bagian utama konten -->
+      <div class="row justify-content-center" data-aos="fade-up">
+        <div class="col-12 text-center">
+          <h1 class="mt-5">Aplikasi Mewarnai</h1>
+          <p>oleh kelompok 4</p>
+        </div>
+      </div>
+      <!-- Formulir pembayaran -->
+      <div class="row justify-content-center" data-aos="fade-up">
+        <div class="col-md-6">
+          <div id="formPembayaran" class="card p-4 shadow-sm">
+            <p>Harga untuk mewarnai: <span id="hargaSistem"></span></p>
+            <div class="form-group">
+              <label for="hargaBayar">Masukkan jumlah pembayaran (Rp):</label>
+              <input type="number" id="hargaBayar" class="form-control" />
+            </div>
+            <button id="submitPembayaran" class="btn btn-primary btn-block">Bayar</button>
+            <div id="pesanPembayaran" class="mt-2 text-danger"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal untuk lanjutkan menggambar -->
+      <div class="modal fade" id="modalLanjutkan" tabindex="-1" role="dialog" aria-labelledby="modalLanjutkanLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLanjutkanLabel">Pembayaran Berhasil</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="popupPesan">
+              <!-- Pesan pembayaran berhasil akan ditampilkan di sini -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" id="lanjutkanGambar">Lanjut</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal untuk menampilkan pesan -->
+      <div class="modal fade" id="modalPesan" tabindex="-1" role="dialog" aria-labelledby="modalPesanLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalPesanLabel">Pesan</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="pesanModal">
+              <!-- Pesan akan ditampilkan di sini -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Bagian aplikasi mewarnai -->
+      <div id="aplikasiMewarnai" class="row justify-content-center" style="display: none" data-aos="fade-up">
+        <div class="col-12 text-center">
+          <div id="pilihanGambar" class="form-group">
+            <label for="pola">Pilih Pola Kartun:</label>
+            <select id="pola" class="form-control d-inline-block w-auto">
+              <option value="pola1">Doraemon</option>
+              <option value="pola2">Barbie</option>
+              <option value="pola3">Kucing</option>
+              <option value="pola4">Avatar</option>
+              <option value="pola5">Boboi Boy</option>
+            </select>
+          </div>
+          <canvas id="alasGambar" class="my-3 border rounded"></canvas>
+
+          <div class="row py-3 d-flex justify-content-center align-item-center">
+            <div class="col-3 d-flex justify-content-center align-item-center">
+              <div class="form-group d-flex flex-column align-item-center justify-content-center">
+                <label for="warna">Pilih Warna:</label>
+                <input type="color" id="warna" value="#ff0000" class="form-control d-inline-block w-auto" />
+              </div>
+            </div>
+            <div class="col-3 d-flex justify-content-center align-item-center">
+              <div class="form-group d-flex flex-column align-item-center justify-content-center">
+                <label for="kuas">Pilih Ukuran Kuas:</label>
+                <input type="range" id="kuas" min="1" max="50" value="3" class="form-control-range" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row d-flex justify-content-center align-item-center py-3">
+            <div class="col-12 d-flex justify-content-around align-item-center">
+              <button id="penghapus" class="btn btn-warning">Penghapus</button>
+              <button id="kembali" class="btn btn-secondary">Undo</button>
+              <button id="simpan" class="btn btn-success">Simpan</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kontrol musik -->
+        <div id="kontrolMusik" class="kontrol-musik d-flex justify-content-center align-items-center">
+          <select id="pilihMusik" class="form-control mx-2">
+            <option value="aespa.mp3">Aespa</option>
+            <option value="illit.mp3">Illit</option>
+            <option value="babymonster.mp3">Babymonster</option>
+          </select>
+          <button id="tombolPutar" class="btn btn-primary">Putar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skrip JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Skrip kustom -->
+    <script src="scripts.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
