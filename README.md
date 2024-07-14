@@ -1,5 +1,3 @@
-# HTML + CSS + JAVASCRIPT
-
 ## How to use
 ```
 git clone https://github.com/Ipsusoedra/ProjectWEB-Aplikasi-Menggambar.git
